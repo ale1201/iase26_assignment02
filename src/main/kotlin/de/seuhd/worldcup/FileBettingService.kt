@@ -9,6 +9,7 @@ import java.io.File
  */
 class FileBettingService(private val file: File) {
 
+    @Synchronized //Suggested
     fun placeBet(bet: Bet) {
         val bets = readBets()
         bets[bet.matchId] = bet

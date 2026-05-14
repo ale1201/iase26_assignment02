@@ -170,7 +170,11 @@ class WorldCupTest {
     @Test
     @Timeout(value = 300, unit = TimeUnit.MILLISECONDS)
     fun `load json from network`(){
-        val jsonNetwork = JsonLoader.loadJsonFromNetwork()
+        val localFetcher = UrlFetcher { _ ->
+            JsonLoader::class.java.getResourceAsStream("/world_cup_2026_full_data.json")!!
+        }
+        // AI Agent was used here to understand and help implementing the injection
+        val jsonNetwork = JsonLoader.loadJsonFromNetwork(fetcher = localFetcher)
         val jsonLocal = JsonLoader.loadJson()
 
         assertEquals(jsonLocal, jsonNetwork)

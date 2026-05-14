@@ -54,7 +54,10 @@ class FileBettingServiceTest {
 
     @Test
     fun `fresh service has no bets`() {
-        val service = FileBettingService(SHARED_BET_FILE)
+        //val service = FileBettingService(SHARED_BET_FILE)
+        val file = createTempFile("bets-fresh", ".txt").toFile() //suggested
+        val service = FileBettingService(file) //suggested
         assertEquals(0, service.getBets().size)
+        file.delete() //suggested
     }
 }
